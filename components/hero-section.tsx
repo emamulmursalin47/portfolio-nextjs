@@ -1,44 +1,19 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 
 import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 
 import Link from 'next/link';
 import { ArrowRight, Download, Mail } from 'lucide-react';
-import React, { useState } from 'react';
+import React from 'react';
 
 const HeroSection: React.FC = () => {
-    const [showScrollGuide, setShowScrollGuide] = useState(true);
   return (
     <div className="relative overflow-hidden min-h-screen flex items-center">
       {/* Background Glow */}
-      <AnimatePresence>
-        {showScrollGuide && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-900/80 backdrop-blur-md p-6 rounded-xl shadow-2xl z-50 max-w-md text-center"
-          >
-            <h3 className="text-2xl font-bold text-white mb-3">Interactive Timeline</h3>
-            <p className="text-gray-200 mb-4">
-              Scroll down to explore my career journey through an interactive timeline. 
-              Watch how the progress bar fills as you navigate through my experience!
-            </p>
-            <div className="flex justify-center">
-              <button 
-                onClick={() => setShowScrollGuide(false)}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition-all duration-300"
-              >
-                Got it!
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+     
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
