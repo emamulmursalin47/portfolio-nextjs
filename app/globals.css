@@ -117,3 +117,59 @@
 .scene-container canvas {
   @apply pointer-events-auto;
 }
+
+
+/* Default styles for nav links */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Active state for navigation items */
+.active-nav-item,
+.nav-link.active-nav-item {
+  color: hsl(var(--primary)) !important;
+  font-weight: 500;
+}
+
+/* Desktop active indicator */
+@media (min-width: 768px) {
+  .active-nav-item::after,
+  .nav-link.active-nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: hsl(var(--primary));
+    transform-origin: center;
+    animation: fadeIn 0.3s ease forwards;
+  }
+}
+
+/* Mobile active indicator */
+@media (max-width: 767px) {
+  [id^="mobile-nav-"].active-nav-item {
+    background-color: hsl(var(--primary) / 0.1);
+  }
+}
+
+/* Section container styling */
+.section-container {
+  min-height: 100vh;
+  scroll-margin-top: 4rem; /* Accounts for fixed navbar */
+  padding: 2rem 0;
+}
+
+/* Animation for the active indicator */
+@keyframes fadeIn {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}

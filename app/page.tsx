@@ -16,10 +16,13 @@ import Experience from "./education/page";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Home() {
-  const containerRef = useRef(null);
+export default function Home(): JSX.Element {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Ensure containerRef.current exists before creating a GSAP context
+    if (!containerRef.current) return;
+    
     const ctx = gsap.context(() => {
       gsap.from(".hero-content", {
         opacity: 0,
@@ -46,25 +49,25 @@ export default function Home() {
 
   return (
     <div ref={containerRef} className="min-h-screen">
-      <section className="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden">
-     
-
-        <HeroSection/>
-        
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen pt-16">
+        <HeroSection />
       </section>
-
-      {/* <section className="stats-section section-padding bg-gradient-to-b from-background to-accent/20">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2 className="text-3xl font-bold mb-8 text-center gradient-text">
-            GitHub Activity
-          </motion.h2>
-          <GitHubStats />
-        </div>
-      </section> */}
-      <Experience/>
-        <Skills/>
-        
-        <Projects/>
+      
+      {/* Education/Experience Section */}
+      <section id="education" className="min-h-screen py-16">
+        <Experience />
+      </section>
+      
+      {/* Skills Section */}
+      <section id="skills" className="min-h-screen py-16">
+        <Skills />
+      </section>
+      
+      {/* Projects Section */}
+      <section id="projects" className="min-h-screen py-16">
+        <Projects />
+      </section>
     </div>
   );
 }
