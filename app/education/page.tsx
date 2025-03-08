@@ -379,45 +379,20 @@ const Experience = () => {
         </div>
         
         {/* Scroll indicator with improved visibility */}
-        <div 
-          ref={scrollIndicatorRef}
-          className="absolute left-1/2 transform -translate-x-1/2 bottom-4 flex flex-col items-center mt-12 z-20"
-        >
-          <div className="bg-blue-500/20 backdrop-blur-sm p-2 rounded-full mb-2 shadow-lg">
-            <MousePointer className="text-blue-400 h-5 w-5" />
-          </div>
-          <p className="text-blue-400 font-medium text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
-            Scroll to explore my journey
-          </p>
-          <ChevronDown className="text-blue-400 animate-bounce h-5 w-5 mt-2" />
-        </div>
+         {/* Scroll indicator in top right corner */}
+      <div 
+        ref={scrollIndicatorRef}
+        className="fixed top-10 right-6 flex items-center gap-2 bg-blue-800/70 backdrop-blur-sm py-2 px-4 rounded-full shadow-lg z-50"
+      >
+        <p className="text-blue-100 font-medium text-sm">
+          Scroll to explore
+        </p>
+        <ChevronDown className="text-blue-300 animate-bounce h-4 w-4" />
+      </div>
       </motion.div>
 
       {/* Scroll Guide Popup */}
-      <AnimatePresence>
-        {showScrollGuide && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-900/80 backdrop-blur-md p-6 rounded-xl shadow-2xl z-50 max-w-md text-center"
-          >
-            <h3 className="text-2xl font-bold text-white mb-3">Interactive Timeline</h3>
-            <p className="text-gray-200 mb-4">
-              Scroll down to explore my career journey through an interactive timeline. 
-              Watch how the progress bar fills as you navigate through my experience!
-            </p>
-            <div className="flex justify-center">
-              <button 
-                onClick={() => setShowScrollGuide(false)}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full transition-all duration-300"
-              >
-                Got it!
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      
 
       {/* Experience details modal */}
       <AnimatePresence>

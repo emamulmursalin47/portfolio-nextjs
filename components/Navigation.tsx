@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Code, Home, Briefcase, GraduationCap, Github, Linkedin } from 'lucide-react';
-import { SiHyperskill, SiSkillshare } from 'react-icons/si';
+import { SiHyperskill, } from 'react-icons/si';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,7 +48,7 @@ export default function Navigation() {
             </Link>
             <Link href="/skills" className="nav-link">
               <SiHyperskill className="w-4 h-4 inline-block mr-1" />
-             Skills
+             Skills & Expertise
             </Link>
           </div>
 

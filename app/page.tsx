@@ -3,14 +3,16 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import { ArrowRight, Download, Mail } from "lucide-react";
+
 import GitHubStats from "@/components/GitHubStats";
 // import Scene from "@/components/3d/Scene";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
-import Image from "next/image";
+
 import HeroSection from "@/components/hero-section";
+import Projects from "./projects/page";
+import Skills from "./skills/page";
+import Experience from "./education/page";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,16 +50,21 @@ export default function Home() {
      
 
         <HeroSection/>
+        
       </section>
 
-      <section className="stats-section section-padding bg-gradient-to-b from-background to-accent/20">
+      {/* <section className="stats-section section-padding bg-gradient-to-b from-background to-accent/20">
         <div className="max-w-7xl mx-auto">
           <motion.h2 className="text-3xl font-bold mb-8 text-center gradient-text">
             GitHub Activity
           </motion.h2>
           <GitHubStats />
         </div>
-      </section>
+      </section> */}
+      <Experience/>
+        <Skills/>
+        
+        <Projects/>
     </div>
   );
 }
