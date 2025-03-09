@@ -4,7 +4,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-import GitHubStats from "@/components/GitHubStats";
+
 // import Scene from "@/components/3d/Scene";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -50,22 +50,22 @@ export default function Home(): JSX.Element {
   return (
     <div ref={containerRef} className="min-h-screen">
       {/* Hero Section */}
-      <section id="home" className="min-h-screen pt-16">
+      <section id="home" className="min-h-screen pt-8">
         <HeroSection />
       </section>
       
       {/* Education/Experience Section */}
-      <section id="education" className="min-h-screen py-16">
+      <section id="education" className="min-h-screen py-8">
         <Experience />
       </section>
       
       {/* Skills Section */}
-      <section id="skills" className="min-h-screen py-16">
+      <section id="skills" className="min-h-screen py-8">
         <Skills />
       </section>
       
       {/* Projects Section */}
-      <section id="projects" className="min-h-screen py-16">
+      <section id="projects" className="min-h-screen py-8">
         <Projects />
       </section>
     </div>

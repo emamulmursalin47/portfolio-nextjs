@@ -3,7 +3,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
+
 
 import Link from 'next/link';
 import { ArrowRight, Download, Mail } from 'lucide-react';

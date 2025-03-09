@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import Navigation from '@/components/Navigation';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,8 +26,10 @@ export default function RootLayout({
           enableSystem={false}
           storageKey="portfolio-theme"
         >
-          <Navigation />
-          <main>{children}</main>
+          <SmoothScroll>
+            <Navigation />
+            <main>{children}</main>
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>
