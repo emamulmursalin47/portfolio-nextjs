@@ -396,93 +396,101 @@ const Experience = () => {
 
       {/* Experience details modal */}
       <AnimatePresence>
-        {activeExperience !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setActiveExperience(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              className="bg-gray-900 rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto border border-blue-500/20"
-              onClick={(e) => e.stopPropagation()}
+  {activeExperience !== null && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      onClick={() => setActiveExperience(null)}
+    >
+      <motion.div
+        initial={{ scale: 0.9, y: 20 }}
+        animate={{ scale: 1, y: 0 }}
+        exit={{ scale: 0.9, y: 20 }}
+        className="bg-gray-900 rounded-2xl w-full max-w-2xl max-h-[80vh] overflow-auto border border-blue-500/20"
+        onClick={(e) => e.stopPropagation()}
+        style={{ 
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch', // For better scrolling on Safari
+        }}
+        onWheel={(e) => {
+          // Prevent the wheel event from being passed to parent elements
+          e.stopPropagation();
+        }}
+      >
+        <div className="p-6 border-b border-gray-800 sticky top-0 bg-gray-900 z-10">
+          <div className="flex justify-between items-start">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                {experiences[activeExperience].title}
+              </h3>
+              <div className="flex items-center gap-2 text-blue-400 mb-1">
+                <Building className="w-4 h-4" />
+                <span>{experiences[activeExperience].company}</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-400 mb-1">
+                <Calendar className="w-4 h-4" />
+                <span>{experiences[activeExperience].period}</span>
+              </div>
+              <div className="flex items-center gap-2 text-gray-400">
+                <ExternalLink className="w-4 h-4" />
+                <span>{experiences[activeExperience].location}</span>
+              </div>
+            </div>
+            <button 
+              onClick={() => setActiveExperience(null)}
+              className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-gray-800 transition-colors"
             >
-              <div className="p-6 border-b border-gray-800">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-2xl font-bold text-white mb-2">
-                      {experiences[activeExperience].title}
-                    </h3>
-                    <div className="flex items-center gap-2 text-blue-400 mb-1">
-                      <Building className="w-4 h-4" />
-                      <span>{experiences[activeExperience].company}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400 mb-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{experiences[activeExperience].period}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <ExternalLink className="w-4 h-4" />
-                      <span>{experiences[activeExperience].location}</span>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={() => setActiveExperience(null)}
-                    className="text-gray-400 hover:text-white p-1 rounded-full hover:bg-gray-800 transition-colors"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-white mb-3">Overview</h4>
-                  <p className="text-gray-300">{experiences[activeExperience].description}</p>
-                </div>
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-white mb-3">Key Achievements</h4>
-                  <ul className="space-y-3">
-                    {experiences[activeExperience].achievements.map((achievement, i) => (
-                      <li key={i} className="text-gray-300 flex items-start gap-3">
-                        <div className="min-w-2 h-2 bg-blue-500 rounded-full mt-2" />
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-white mb-3">Skills</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {experiences[activeExperience].skills.map((skill, i) => (
-                      <span 
-                        key={i} 
-                        className="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-sm border border-blue-500/20"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-8 flex justify-end">
-                  {/* <button 
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
-                  >
-                    <Download className="w-4 h-4" />
-                    Download Certificate
-                  </button> */}
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="p-6">
+          <div className="mb-6">
+            <h4 className="text-lg font-semibold text-white mb-3">Overview</h4>
+            <p className="text-gray-300">{experiences[activeExperience].description}</p>
+          </div>
+          <div className="mb-6">
+            <h4 className="text-lg font-semibold text-white mb-3">Key Achievements</h4>
+            <ul className="space-y-3">
+              {experiences[activeExperience].achievements.map((achievement, i) => (
+                <li key={i} className="text-gray-300 flex items-start gap-3">
+                  <div className="min-w-2 h-2 bg-blue-500 rounded-full mt-2" />
+                  <span>{achievement}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-3">Skills</h4>
+            <div className="flex flex-wrap gap-2">
+              {experiences[activeExperience].skills.map((skill, i) => (
+                <span 
+                  key={i} 
+                  className="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-sm border border-blue-500/20"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className="mt-8 flex justify-end">
+            {/* <button 
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              Download Certificate
+            </button> */}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
       <div className="relative">
         {/* Timeline container with improved visuals */}

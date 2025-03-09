@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
@@ -99,7 +100,7 @@ export default function Projects(): JSX.Element {
     setCurrentIndex(projects.findIndex(p => p.id === project.id));
     setModalOpen(true);
   };
-
+//@ts-ignore
   const navigateProject = useCallback((direction: number): void => {
     const newIndex = (currentIndex + direction + projects.length) % projects.length;
     setCurrentIndex(newIndex);

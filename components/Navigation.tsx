@@ -104,7 +104,7 @@ export default function Navigation(): JSX.Element {
 
           <div className="flex items-center space-x-4">
             <a
-              href="https://github.com"
+              href="https://github.com/emamulmursalin47"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-foreground transition-colors"
@@ -112,7 +112,7 @@ export default function Navigation(): JSX.Element {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/mdemamulmursalin/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/70 hover:text-foreground transition-colors"
