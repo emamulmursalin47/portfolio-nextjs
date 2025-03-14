@@ -30,12 +30,21 @@ interface Project {
 const projects: Project[] = [
   {
     "id": "1",
-    "title": "Online Donation Platform",
-    "description": "A full-stack donation platform with real-time updates, secure payment gateway integration, and a responsive UI to facilitate seamless contributions.",
-    "image": "https://res.cloudinary.com/dufs2ywc7/image/upload/v1741498920/Screenshot_2025-02-18_210952_qyagcc.png",
-    "tags": ["React", "Node.js", "TypeScript", "TailwindCSS", "Payment Gateway Integration", "MongoDB", "ExpressJS", "Responsive Web Design"],
-    "demo": "https://donation.atcacademy.online/"
-  },
+    "title": "Car Paint Coating Services",
+    "description": "A modern web platform for booking ceramic coating and car detailing services. Built with Next.js, Tailwind CSS, Framer Motion, and GSAP, it offers a visually stunning and user-friendly experience.",
+    "image": "https://res.cloudinary.com/dufs2ywc7/image/upload/v1741503354/Screenshot_2025-03-09_122841_qcpzz7.png",
+    "tags": ["NextJS", "TailwindCSS", "Framer Motion", "GSAP", "MongoDB"],
+    "github": "https://github.com/yourusername/car-coating-services",
+    "demo": "https://coating-services.vercel.app/"
+},
+{
+  "id": "1",
+  "title": "Online Donation Platform",
+  "description": "A full-stack donation platform with real-time updates, secure payment gateway integration, and a responsive UI to facilitate seamless contributions.",
+  "image": "https://res.cloudinary.com/dufs2ywc7/image/upload/v1741498920/Screenshot_2025-02-18_210952_qyagcc.png",
+  "tags": ["React", "Node.js", "TypeScript", "TailwindCSS", "Payment Gateway Integration", "MongoDB", "ExpressJS", "Responsive Web Design"],
+  "demo": "https://donation.atcacademy.online/"
+},
   {
     "id": "2",
     "title": "A Software Academy Website",
@@ -85,7 +94,9 @@ const projects: Project[] = [
     "tags": ["ReactJS", "TailwindCSS", "Framer Motion", "NextJS", "MongoDB"],
     "github": "https://github.com/yourusername/probashi",
     "demo": "https://probashivi.netlify.app/"
-  }
+  },
+  
+
 ];
 
 export default function Projects(): JSX.Element {

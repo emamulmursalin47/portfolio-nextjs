@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 
 const GITHUB_API = 'https://api.github.com';
-const GITHUB_USERNAME = 'yourusername'; // Replace with actual GitHub username
+const GITHUB_USERNAME = 'emamulmursalin47'; // Replace with actual GitHub username
 
 async function fetchGitHubStats() {
   const [userResponse, reposResponse] = await Promise.all([

@@ -1,195 +1,156 @@
-"use client"
+'use client';
 
-import { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { GrCertificate } from 'react-icons/gr';
 import { Badge } from '@/components/ui/badge';
-
+import { X, Scroll } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Scroll } from 'lucide-react';
+import Image from 'next/image';
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const certifications = [
   {
     id: 1,
-    name: "HTML5/CSS3 Certification",
-    issuer: "W3Schools",
-    date: "2023",
-    credentialId: "666629fc...",
-    skills: ["HTML5", "CSS3", "Responsive Design", "Web Accessibility"],
-    image: "/certificate-html.png" // Replace with actual image path
+    name: 'HTML5/CSS3 Certification',
+    issuer: 'W3Schools',
+    date: '2023',
+    credentialId: '666629fc...',
+    skills: ['HTML5', 'CSS3', 'Responsive Design', 'Web Accessibility'],
+    image: '/certificates/certificate-html.png', // Ensure this is inside the 'public/certificates/' folder
+    description: 'This certification validates proficiency in HTML5 and CSS3.',
   },
   {
     id: 2,
-    name: "Scrum Fundamentals (SFC)",
-    issuer: "SCRUMstudy",
-    date: "2022",
-    credentialId: "SFC92831...",
-    skills: ["Agile", "Scrum", "Project Management", "Sprint Planning"],
-    image: "/certificate-scrum.png" // Replace with actual image path
+    name: 'Scrum Fundamentals (SFC)',
+    issuer: 'SCRUMstudy',
+    date: '2022',
+    credentialId: 'SFC92831...',
+    skills: ['Agile', 'Scrum', 'Project Management', 'Sprint Planning'],
+    image: '/certificates/certificate-scrum.png', // Ensure this is inside the 'public/certificates/' folder
+    description: 'This certification demonstrates understanding of Agile principles and Scrum.',
   },
-  {
-    id: 3,
-    name: "Adobe Illustrator Certification",
-    issuer: "Adobe",
-    date: "2023",
-    credentialId: "64554302...",
-    skills: ["Vector Graphics", "Logo Design", "Typography", "Digital Illustration"],
-    image: "/certificate-illustrator.png" // Replace with actual image path
-  },
-  {
-    id: 4,
-    name: "Python for Data Science",
-    issuer: "DataCamp",
-    date: "2023",
-    credentialId: "DC87654...",
-    skills: ["Python", "Data Analysis", "Pandas", "NumPy", "Visualization"],
-    image: "/certificate-python.png" // Replace with actual image path
-  }
 ];
 
 const Certifications = () => {
-  const sectionRef = useRef(null);
-  const cardRefs = useRef([]);
-  const scrollIndicatorRef = useRef(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<HTMLDivElement[]>([]);
+  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
+  const [selectedCert, setSelectedCert] = useState<any>(null);
 
+  // Debugging: Check if modal opens
   useEffect(() => {
-    // Animation for the certificates
+    console.log('Selected Certificate:', selectedCert);
+  }, [selectedCert]);
+
+  // Optimized GSAP Animation Setup
+  useEffect(() => {
     cardRefs.current.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        {
-          x: index % 2 === 0 ? -50 : 50,
-          opacity: 0,
-          scale: 0.9
-        },
-        {
-          x: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: card,
-            start: "top bottom-=100",
-            end: "top center",
-            toggleActions: "play none none reverse"
+      if (card) {
+        gsap.fromTo(
+          card,
+          { x: index % 2 === 0 ? -50 : 50, opacity: 0, scale: 0.9 },
+          { 
+            x: 0, opacity: 1, scale: 1, duration: 0.8, 
+            scrollTrigger: { 
+              trigger: card, start: 'top bottom-=100', 
+              end: 'top center', toggleActions: 'play none none reverse' 
+            }
           }
-        }
-      );
-    });
-
-    // Animate scroll indicator
-    gsap.to(scrollIndicatorRef.current, {
-      y: 15,
-      opacity: 0.6,
-      repeat: -1,
-      yoyo: true,
-      duration: 1.5,
-      ease: "power1.inOut"
-    });
-
-    // Hide scroll indicator when scrolled down
-    gsap.to(scrollIndicatorRef.current, {
-      opacity: 0,
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top center",
-        end: "center center",
-        scrub: true
+        );
       }
     });
 
+    gsap.to(scrollIndicatorRef.current, {
+      y: 15, opacity: 0.6, repeat: -1, yoyo: true, duration: 1.5, ease: 'power1.inOut'
+    });
+
+    gsap.to(scrollIndicatorRef.current, {
+      opacity: 0,
+      scrollTrigger: { trigger: sectionRef.current, start: 'top center', end: 'center center', scrub: true }
+    });
+
+    document.body.style.overflow = selectedCert ? 'hidden' : 'unset';
+
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      document.body.style.overflow = 'unset';
     };
-  }, []);
-//@ts-ignore
-  const addToCardRefs = (el) => {
-    //@ts-ignore
+  }, [selectedCert]);
+
+  // Correct way to store refs
+  const addToCardRefs = useCallback((el: HTMLDivElement) => {
     if (el && !cardRefs.current.includes(el)) {
-        //@ts-ignore
-      cardRefs.current.push(el);
+      cardRefs.current = [...cardRefs.current, el];
     }
-  };
+  }, []);
 
   return (
-    <div 
-      ref={sectionRef} 
-      id="certifications" 
-      className="container mx-auto px-4 py-24 relative"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-12 text-center"
-      >
+    <div ref={sectionRef} id="certifications" className="container mx-auto px-4 py-24 relative">
+      {/* Section Header */}
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-12 text-center">
         <h1 className="text-4xl font-bold text-white mb-4">Professional Certifications</h1>
-        <p className="text-gray-400 max-w-2xl mx-auto">
-          Professional qualifications that demonstrate expertise and continuous learning in various domains
-        </p>
-        
-        {/* Scroll indicator */}
-        <div 
-          ref={scrollIndicatorRef}
-          className="absolute left-1/2 transform -translate-x-1/2 bottom-4 flex flex-col items-center mt-12"
-        >
+        <p className="text-gray-400 max-w-2xl mx-auto">Showcasing certifications that validate my professional skills.</p>
+        <div ref={scrollIndicatorRef} className="absolute left-1/2 transform -translate-x-1/2 bottom-4 flex flex-col items-center">
           <p className="text-blue-400 mb-2 text-sm">Scroll to explore</p>
           <Scroll className="text-blue-400 animate-bounce h-5 w-5" />
         </div>
       </motion.div>
 
+      {/* Certification Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {certifications.map((cert, index) => (
-          <motion.div
-            key={cert.id}
-            ref={addToCardRefs}
-            whileHover={{ 
-              scale: 1.03, 
-              boxShadow: "0 0 30px rgba(59, 130, 246, 0.3)" 
-            }}
-            className="bg-black/30 backdrop-blur-md p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300"
-          >
+        {certifications.map(cert => (
+          <motion.div key={cert.id} ref={addToCardRefs} whileHover={{ scale: 1.03 }} className="bg-black/30 backdrop-blur-md p-6 rounded-xl border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
             <div className="flex items-start space-x-4">
               <div className="p-3 bg-blue-500/10 rounded-full">
                 <GrCertificate className="h-8 w-8 text-blue-400" />
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-bold text-white">{cert.name}</h3>
-                <div className="flex justify-between mt-1">
-                  <p className="text-blue-400">{cert.issuer}</p>
-                  <p className="text-gray-500">{cert.date}</p>
-                </div>
+                <p className="text-blue-400 mt-1">{cert.issuer} - {cert.date}</p>
                 <p className="text-gray-400 mt-2">Credential ID: {cert.credentialId}</p>
-                
-                <div className="mt-4 space-x-2 space-y-2">
-                  {cert.skills.map((skill) => (
-                    <Badge 
-                      key={skill} 
-                      variant="outline"
-                      className="bg-blue-500/10 text-blue-300 border-blue-500/20"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
+                <div className="mt-4 space-x-2">
+                  {cert.skills.map(skill => <Badge key={skill} className="bg-blue-500/10 text-blue-300 border-blue-500/20">{skill}</Badge>)}
                 </div>
-                
-                <div className="mt-4 flex justify-end">
-                  <button className="text-blue-400 hover:text-blue-300 text-sm flex items-center">
-                    View Certificate
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                  </button>
+                <div className="mt-4">
+                  <Image 
+                    src={cert.image} 
+                    alt={`${cert.name} certificate`} 
+                    width={500} 
+                    height={300} 
+                    className="w-full h-40 object-cover rounded-lg cursor-pointer" 
+                    onClick={() => setSelectedCert(cert)} 
+                  />
                 </div>
               </div>
             </div>
           </motion.div>
         ))}
       </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div key={selectedCert?.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedCert(null)} className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-gray-900 border border-blue-500/30 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+              <div className="relative">
+                <Image src={selectedCert.image} alt={`${selectedCert.name} certificate`} width={800} height={500} className="w-full h-80 object-cover rounded-t-xl" />
+                <button onClick={() => setSelectedCert(null)} className="absolute top-4 right-4 bg-black/50 p-2 rounded-full text-white">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <div className="p-6">
+                <h2 className="text-2xl font-bold text-white">{selectedCert.name}</h2>
+                <p className="text-blue-400 font-medium">{selectedCert.issuer} - {selectedCert.date}</p>
+                <p className="text-gray-400 mt-2">Credential ID: {selectedCert.credentialId}</p>
+                <p className="text-gray-300 mt-4">{selectedCert.description}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

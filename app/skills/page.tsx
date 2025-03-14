@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
-// Import React Icons
 import { 
   SiNextdotjs, SiReact, SiJavascript, SiTailwindcss, SiBootstrap,
   SiPhp, SiMysql, SiPython, SiNodedotjs, 
@@ -17,8 +16,8 @@ import { BiCodeAlt, BiGitPullRequest } from 'react-icons/bi';
 import { FaProjectDiagram, FaCode, FaCodeBranch, FaAward } from 'react-icons/fa';
 import { DiJava } from 'react-icons/di';
 import Image from 'next/image';
+import { AiOutlineClose } from 'react-icons/ai';
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const Skills = () => {
@@ -29,11 +28,10 @@ const Skills = () => {
   const githubStatsRef = useRef(null);
   const [activeTab, setActiveTab] = useState('skills');
   const [isMobile, setIsMobile] = useState(false);
+  const [selectedCertification, setSelectedCertification] = useState(null);
 
-  // GitHub username - replace with your own
   const githubUsername = 'emamulmursalin47';
 
-  // Map icons to each skill
   //@ts-ignore
   const getSkillIcon = (skillName) => {
     const iconMap = {
@@ -129,55 +127,45 @@ const Skills = () => {
       id: '666629fc...',
       icon: <GrCertificate className="mr-2 text-lg" />,
       date: 'April 2022',
-      issuer: 'Sololearn'
+      issuer: 'Sololearn',
+      image: '/certificates/html-css-certificate.jpg'
     },
     {
       title: 'Scrum Fundamentals (SFC)',
       id: 'Certified Scrum Developer',
       icon: <GrCertificate className="mr-2 text-lg" />,
       date: 'June 2023',
-      issuer: 'SCRUMstudy'
+      issuer: 'SCRUMstudy',
+      image: '/certificates/scrum-certificate.jpg'
     },
     {
       title: 'Adobe Illustrator Certification',
       id: '64554302...',
       icon: <GrCertificate className="mr-2 text-lg" />,
       date: 'September 2021',
-      issuer: 'Adobe'
+      issuer: 'Adobe',
+      image: '/certificates/illustrator-certificate.jpg'
     }
   ];
 
-  // Handle window resize and check if mobile
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
-    // Set initial value
     handleResize();
-    
-    // Add event listener
     window.addEventListener('resize', handleResize);
-    
-    // Clean up
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
-    // Clear refs on component mount or tab change
     skillsRefs.current = [];
     progressRefs.current = [];
 
-    // Only initialize animations if not on mobile to improve performance
     if (!isMobile) {
-      // Animate skill category cards
       skillsRefs.current.forEach((ref, index) => {
         gsap.fromTo(
           ref,
-          {
-            opacity: 0,
-            y: 50,
-          },
+          { opacity: 0, y: 50 },
           {
             opacity: 1,
             y: 0,
@@ -193,7 +181,6 @@ const Skills = () => {
         );
       });
 
-      // Animate progress bars
       progressRefs.current.forEach((ref) => {
         //@ts-ignore
         const width = ref?.getAttribute('data-width');
@@ -214,14 +201,10 @@ const Skills = () => {
         );
       });
 
-      // Animate certifications section
       if (certificationRef.current) {
         gsap.fromTo(
           certificationRef.current,
-          {
-            x: -100,
-            opacity: 0,
-          },
+          { x: -100, opacity: 0 },
           {
             x: 0,
             opacity: 1,
@@ -237,14 +220,10 @@ const Skills = () => {
         );
       }
 
-      // Animate GitHub stats section
       if (githubStatsRef.current) {
         gsap.fromTo(
           githubStatsRef.current,
-          {
-            y: 50,
-            opacity: 0,
-          },
+          { y: 50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -262,11 +241,11 @@ const Skills = () => {
     }
 
     return () => {
-      // Clean up scroll triggers
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, [activeTab, isMobile]);
-//@ts-ignore
+
+  //@ts-ignore
   const addToSkillsRefs = (el) => {
     //@ts-ignore
     if (el && !skillsRefs.current.includes(el)) {
@@ -274,7 +253,8 @@ const Skills = () => {
       skillsRefs.current.push(el);
     }
   };
-//@ts-ignore
+
+  //@ts-ignore
   const addToProgressRefs = (el) => {
     //@ts-ignore
     if (el && !progressRefs.current.includes(el)) {
@@ -282,8 +262,11 @@ const Skills = () => {
       progressRefs.current.push(el);
     }
   };
-
+ 
+ 
+  
   return (
+    
     <div className="container mx-auto px-4 py-16 md:py-24" id="skills">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -294,8 +277,7 @@ const Skills = () => {
         <p className="text-gray-300 text-center mb-8 md:mb-12 max-w-3xl mx-auto text-sm md:text-base">
           Leveraging modern technologies and frameworks to build efficient, scalable, and beautiful applications
         </p>
-        
-        {/* Responsive Tabs */}
+
         <div className="flex justify-center mb-8 md:mb-12 px-2">
           <div className="flex flex-wrap md:flex-nowrap w-full md:w-auto justify-center space-y-2 md:space-y-0 md:space-x-2 bg-black/50 backdrop-blur-md p-1 rounded-lg">
             <button
@@ -330,8 +312,7 @@ const Skills = () => {
             </button>
           </div>
         </div>
-        
-        {/* Skills Content */}
+
         {activeTab === 'skills' && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {skillCategories.map((category, categoryIndex) => (
@@ -378,8 +359,7 @@ const Skills = () => {
             ))}
           </div>
         )}
-        
-        {/* Certifications Content */}
+
         {activeTab === 'certifications' && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -398,7 +378,10 @@ const Skills = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-4 md:p-6 bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-lg border border-gray-800 hover:border-blue-600 transition-all duration-300"
+                  className="p-4 md:p-6 bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-lg border border-gray-800 hover:border-blue-600 transition-all duration-300 cursor-pointer"
+                 //@ts-ignore
+                  onClick={() => setSelectedCertification && setSelectedCertification(cert)}
+
                 >
                   <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-blue-600/30 flex items-center justify-center mb-3 md:mb-4">
                     {cert.icon}
@@ -414,6 +397,7 @@ const Skills = () => {
                 </motion.div>
               ))}
             </div>
+            
             
             <div className="mt-8 md:mt-12 p-4 md:p-6 bg-gradient-to-br from-gray-900/40 to-black/60 rounded-xl border border-gray-800">
               <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center">

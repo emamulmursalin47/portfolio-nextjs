@@ -8,13 +8,14 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Download, Mail } from 'lucide-react';
 import React from 'react';
+import ParticlesBackground from './ParticlesBackground';
 
 const HeroSection: React.FC = () => {
   return (
     <div className="relative overflow-hidden min-h-screen flex items-center">
       {/* Background Glow */}
      
-      
+      <ParticlesBackground/>
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Section */}

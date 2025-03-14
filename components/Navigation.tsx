@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code, Home, Briefcase, GraduationCap, Github, Linkedin, Menu, X } from 'lucide-react';
+import { Code, Home, Briefcase, GraduationCap, Github, Linkedin, Menu, X, Contact } from 'lucide-react';
 import { SiHyperskill } from 'react-icons/si';
 
 // Define types for navigation items
@@ -44,9 +44,11 @@ export default function Navigation(): JSX.Element {
   // Navigation items with their section ids and icons
   const navItems: NavItem[] = [
     { id: 'home', label: 'Home', icon: <Home className="w-4 h-4 inline-block mr-1" /> },
-    { id: 'projects', label: 'Projects', icon: <Briefcase className="w-4 h-4 inline-block mr-1" /> },
+ 
     { id: 'education', label: 'Experience', icon: <GraduationCap className="w-4 h-4 inline-block mr-1" /> },
-    { id: 'skills', label: 'Skills & Expertise', icon: <SiHyperskill className="w-4 h-4 inline-block mr-1" /> }
+    { id: 'skills', label: 'Skills & Expertise', icon: <SiHyperskill className="w-4 h-4 inline-block mr-1" /> },
+    { id: 'projects', label: 'Projects', icon: <Briefcase className="w-4 h-4 inline-block mr-1" /> },
+    { id: 'contact', label: 'Contact', icon: <Contact className="w-4 h-4 inline-block mr-1" /> }
   ];
 
   const toggleMobileMenu = (): void => {

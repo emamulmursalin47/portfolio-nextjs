@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-
+import Image from 'next/image';
+//@ts-ignore
 export default function ProjectCard({ project, index, onClick }) {
   return (
     <motion.div
@@ -10,10 +11,12 @@ export default function ProjectCard({ project, index, onClick }) {
       onClick={() => onClick(project)}
     >
       <div className="relative h-48 overflow-hidden">
-        <img
+        <Image
           src={project.image}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+          width={500}
+          height={300}
         />
       </div>
       <div className="p-6 flex flex-col flex-grow">
