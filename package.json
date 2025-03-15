@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -42,8 +42,8 @@
     "@react-three/fiber": "^8.15.19",
     "@studio-freight/lenis": "^1.0.42",
     "@types/node": "20.6.2",
-    "@types/react": "18.2.22",
-    "@types/react-dom": "18.2.7",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
     "@types/three": "^0.162.0",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
@@ -52,17 +52,17 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "eslint": "8.49.0",
-    "eslint-config-next": "13.5.1",
+    "eslint-config-next": "15.2.2",
     "framer-motion": "^11.0.14",
     "gsap": "^3.12.5",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.446.0",
-    "next": "13.5.1",
+    "next": "15.2.2",
     "next-themes": "^0.3.0",
     "postcss": "8.4.30",
-    "react": "18.2.0",
+    "react": "19.0.0",
     "react-day-picker": "^8.10.1",
-    "react-dom": "18.2.0",
+    "react-dom": "19.0.0",
     "react-hook-form": "^7.53.0",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
@@ -77,5 +77,9 @@
     "typescript": "5.2.2",
     "vaul": "^0.9.9",
     "zod": "^3.23.0"
+  },
+  "overrides": {
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4"
   }
 }

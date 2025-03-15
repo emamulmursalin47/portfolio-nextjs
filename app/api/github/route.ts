@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 const GITHUB_API = 'https://api.github.com';
 const GITHUB_USERNAME = 'emamulmursalin47'; // Replace with actual GitHub username

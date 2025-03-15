@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, type JSX } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Code, Home, Briefcase, GraduationCap, Github, Linkedin, Menu, X, Contact } from 'lucide-react';
 import { SiHyperskill } from 'react-icons/si';
@@ -84,7 +84,7 @@ export default function Navigation(): JSX.Element {
             className="flex items-center space-x-2 focus:outline-none"
           >
             <Code className="w-8 h-8 text-primary" />
-            <span className="font-bold text-lg gradient-text">Portfolio</span>
+            <span className="font-bold text-lg gradient-text">Mursalin</span>
           </button>
 
           {/* Desktop Navigation */}

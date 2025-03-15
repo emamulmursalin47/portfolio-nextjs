@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type JSX } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, GraduationCap, Award, ChevronDown, MousePointer, ExternalLink, Download, Calendar, Building } from 'lucide-react';
 import gsap from 'gsap';

@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type JSX } from "react";
 // import Scene from "@/components/3d/Scene";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

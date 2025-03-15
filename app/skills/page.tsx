@@ -128,23 +128,30 @@ const Skills = () => {
       icon: <GrCertificate className="mr-2 text-lg" />,
       date: 'April 2022',
       issuer: 'Sololearn',
-      image: '/certificates/html-css-certificate.jpg'
+      image: '',
+      outcomes: [
+        'Mastered responsive web design principles',
+        'Developed complex layouts using CSS Grid/Flexbox',
+        'Implemented modern CSS animations',
+        'Achieved top 5% in final assessments'
+      ],
+      skills: ['Semantic HTML', 'CSS Variables', 'Media Queries', 'Flexbox']
     },
     {
       title: 'Scrum Fundamentals (SFC)',
-      id: 'Certified Scrum Developer',
+      id: '1058764',
       icon: <GrCertificate className="mr-2 text-lg" />,
       date: 'June 2023',
       issuer: 'SCRUMstudy',
-      image: '/certificates/scrum-certificate.jpg'
+      image: 'https://res.cloudinary.com/dufs2ywc7/image/upload/v1741503607/Screenshot_2025-03-09_125937_gh1huq.png'
     },
     {
-      title: 'Adobe Illustrator Certification',
+      title: 'Leadership & Management Mastery',
       id: '64554302...',
       icon: <GrCertificate className="mr-2 text-lg" />,
       date: 'September 2021',
       issuer: 'Adobe',
-      image: '/certificates/illustrator-certificate.jpg'
+      image: 'https://res.cloudinary.com/dufs2ywc7/image/upload/v1741503859/Screenshot_2025-03-09_130349_ek1uvk.png'
     }
   ];
 
@@ -290,7 +297,7 @@ const Skills = () => {
             >
               <FaCode className="mr-2" /> Skills
             </button>
-            <button
+            {/* <button
               onClick={() => setActiveTab('certifications')}
               className={`w-full md:w-auto px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
                 activeTab === 'certifications' 
@@ -299,7 +306,7 @@ const Skills = () => {
               }`}
             >
               <FaAward className="mr-2" /> Certifications
-            </button>
+            </button> */}
             <button
               onClick={() => setActiveTab('github')}
               className={`w-full md:w-auto px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
@@ -477,7 +484,7 @@ const Skills = () => {
                   </div>
                 </motion.div>
                 
-                <motion.div
+                {/* <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
@@ -497,7 +504,7 @@ const Skills = () => {
                       />
                     </div>
                   </div>
-                </motion.div>
+                </motion.div> */}
               </div>
               
               {/* Contribution Activity */}
