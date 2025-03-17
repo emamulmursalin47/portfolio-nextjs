@@ -1,6 +1,7 @@
+'use client'
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode, Key } from 'react';
+import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal,  Key } from 'react';
 //@ts-ignore
 export default function ProjectCard({ project, index, onClick }) {
   return (
@@ -27,7 +28,7 @@ export default function ProjectCard({ project, index, onClick }) {
         </p>
         <div className="flex flex-wrap gap-2 mb-4">
           
-          {project.tags.slice(0, 3).map((tag: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined, i: Key | null | undefined) => (
+          {project.tags.slice(0, 3).map((tag: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined, i: Key | null | undefined) => (
             <span
               key={i}
               className="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary"

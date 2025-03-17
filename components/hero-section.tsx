@@ -77,7 +77,7 @@ const HeroSection: React.FC = () => {
             {/* Profile Image */}
             <div className="relative w-[500px] ml-40 h-full">
               <Image
-                src="https://i.ibb.co/R4SrmCZR/Untitled-design-4.png"
+                src="https://res.cloudinary.com/dufs2ywc7/image/upload/v1742190919/Blue_Simple_Business_Professional_LinkedIn_Profile_Picture_2_xsxngn.png"
                 alt="Profile"
                 className="w-full h-full object-cover rounded-full shadow-2xl border-4 border-blue-500"
                 width={500}

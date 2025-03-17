@@ -17,6 +17,7 @@ import { FaProjectDiagram, FaCode, FaCodeBranch, FaAward } from 'react-icons/fa'
 import { DiJava } from 'react-icons/di';
 import Image from 'next/image';
 import { AiOutlineClose } from 'react-icons/ai';
+import GitHubStats from '@/components/GitHubStats';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -457,76 +458,7 @@ const Skills = () => {
             ref={githubStatsRef}
           >
             <div className="bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-md rounded-xl p-4 md:p-8 border border-gray-800">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 flex items-center">
-                <SiGithub className="mr-3 text-xl md:text-2xl" /> GitHub Statistics
-              </h2>
-              
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="bg-gradient-to-br from-gray-900/40 to-black/60 rounded-xl p-4 md:p-6 border border-gray-800"
-                >
-                  <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4 flex items-center">
-                    <FaCodeBranch className="mr-2 text-green-400" /> GitHub Commit Stats
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="w-full overflow-hidden">
-                      <Image
-                        src={`https://github-readme-stats.vercel.app/api?username=${githubUsername}&show_icons=true&hide_border=true&theme=dark&bg_color=00000000&title_color=3B82F6&icon_color=3B82F6&text_color=FFFFFF&hide=prs,issues`}
-                        alt="GitHub Stats"
-                        className="w-full"
-                        width={500}
-                        height={200}
-                      />
-                    </div>
-                  </div>
-                </motion.div>
-                
-                {/* <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  className="bg-gradient-to-br from-gray-900/40 to-black/60 rounded-xl p-4 md:p-6 border border-gray-800"
-                >
-                  <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4 flex items-center">
-                    <BiCodeAlt className="mr-2 text-blue-400" /> Most Used Languages
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="w-full overflow-hidden">
-                      <Image
-                        src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${githubUsername}&layout=compact&hide_border=true&theme=dark&bg_color=00000000&title_color=3B82F6&text_color=FFFFFF`}
-                        alt="Top Languages"
-                        className="w-full"
-                        width={500}
-                        height={200}
-                      />
-                    </div>
-                  </div>
-                </motion.div> */}
-              </div>
-              
-              {/* Contribution Activity */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.7 }}
-                className="bg-gradient-to-br from-gray-900/40 to-black/60 rounded-xl p-4 md:p-6 border border-gray-800"
-              >
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4 flex items-center">
-                  <BiGitPullRequest className="mr-2 text-blue-400" /> Contribution Activity
-                </h3>
-                <div className="w-full overflow-hidden">
-                  <Image
-                    src={`https://github-readme-activity-graph.vercel.app/graph?username=${githubUsername}&theme=react-dark&hide_border=true&bg_color=00000000`}
-                    alt="Activity Graph"
-                    className="w-full"
-                    width={1000}
-                    height={250}
-                  />
-                </div>
-              </motion.div>
+              <GitHubStats/>
             </div>
           </motion.div>
         )}
