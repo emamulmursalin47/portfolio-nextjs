@@ -288,7 +288,7 @@ const Skills = () => {
 
         <div className="flex justify-center mb-8 md:mb-12 px-2">
           <div className="flex flex-wrap md:flex-nowrap w-full md:w-auto justify-center space-y-2 md:space-y-0 md:space-x-2 bg-black/50 backdrop-blur-md p-1 rounded-lg">
-            <button
+            {/* <button
               onClick={() => setActiveTab('skills')}
               className={`w-full md:w-auto px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
                 activeTab === 'skills' 
@@ -297,7 +297,7 @@ const Skills = () => {
               }`}
             >
               <FaCode className="mr-2" /> Skills
-            </button>
+            </button> */}
             {/* <button
               onClick={() => setActiveTab('certifications')}
               className={`w-full md:w-auto px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
@@ -308,7 +308,7 @@ const Skills = () => {
             >
               <FaAward className="mr-2" /> Certifications
             </button> */}
-            <button
+            {/* <button
               onClick={() => setActiveTab('github')}
               className={`w-full md:w-auto px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
                 activeTab === 'github' 
@@ -317,7 +317,7 @@ const Skills = () => {
               }`}
             >
               <SiGithub className="mr-2" /> GitHub Stats
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -368,100 +368,7 @@ const Skills = () => {
           </div>
         )}
 
-        {activeTab === 'certifications' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            ref={certificationRef}
-            className="bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-md rounded-xl p-4 md:p-8 border border-gray-800"
-          >
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 md:mb-8 flex items-center">
-              <FaAward className="mr-3 text-yellow-400" /> Certifications & Achievements
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {certifications.map((cert, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="p-4 md:p-6 bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-lg border border-gray-800 hover:border-blue-600 transition-all duration-300 cursor-pointer"
-                 //@ts-ignore
-                  onClick={() => setSelectedCertification && setSelectedCertification(cert)}
-
-                >
-                  <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-blue-600/30 flex items-center justify-center mb-3 md:mb-4">
-                    {cert.icon}
-                  </div>
-                  <h3 className="text-base md:text-lg font-semibold text-white mb-1 md:mb-2">
-                    {cert.title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-400 mb-2">{cert.id}</p>
-                  <div className="flex justify-between text-xs md:text-sm">
-                    <span className="text-blue-400">{cert.date}</span>
-                    <span className="text-gray-400">{cert.issuer}</span>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            
-            
-            <div className="mt-8 md:mt-12 p-4 md:p-6 bg-gradient-to-br from-gray-900/40 to-black/60 rounded-xl border border-gray-800">
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 flex items-center">
-                <MdCompareArrows className="mr-2 text-blue-400" /> Continuous Learning
-              </h3>
-              <p className="text-sm md:text-base text-gray-300 mb-4">
-                I'm committed to ongoing professional development and staying current with industry trends and technologies.
-                Currently exploring the following areas:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-                <div className="p-3 md:p-4 bg-blue-900/20 rounded-lg flex items-center">
-                  <div className="mr-3 text-blue-400">
-                    <SiTensorflow className="text-xl md:text-2xl" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm md:text-base font-medium text-white">Advanced ML/AI</h4>
-                    <p className="text-xs md:text-sm text-gray-400">Computer Vision & Neural Networks</p>
-                  </div>
-                </div>
-                <div className="p-3 md:p-4 bg-green-900/20 rounded-lg flex items-center">
-                  <div className="mr-3 text-green-400">
-                    <SiReact className="text-xl md:text-2xl" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm md:text-base font-medium text-white">Advanced React</h4>
-                    <p className="text-xs md:text-sm text-gray-400">Performance & Server Components</p>
-                  </div>
-                </div>
-                <div className="p-3 md:p-4 bg-purple-900/20 rounded-lg flex items-center">
-                  <div className="mr-3 text-purple-400">
-                    <FaProjectDiagram className="text-xl md:text-2xl" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm md:text-base font-medium text-white">System Design</h4>
-                    <p className="text-xs md:text-sm text-gray-400">Architecture & Microservices</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
         
-        {/* GitHub Stats Content */}
-        {activeTab === 'github' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mt-4"
-            ref={githubStatsRef}
-          >
-            <div className="bg-gradient-to-br from-black/40 to-black/60 backdrop-blur-md rounded-xl p-4 md:p-8 border border-gray-800">
-              <GitHubStats/>
-            </div>
-          </motion.div>
-        )}
       </motion.div>
     </div>
   );

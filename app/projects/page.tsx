@@ -116,19 +116,16 @@ export default function Projects(): JSX.Element {
     setSelectedProject(projects[newIndex]);
   }, [currentIndex, projects]);
 
-  // Image preloading for smoother experience
   useEffect(() => {
     const preloadImages = async (): Promise<void> => {
       try {
         const imagePromises = projects.map((project) => {
           return new Promise<void>((resolve) => {
             const img = new Image();
-            img.src = project.image;
+            img.src = `${project.image}?auto=format&fit=max&w=400`;
+            img.loading = "eager";
             img.onload = () => resolve();
-            img.onerror = () => {
-              console.warn(`Failed to load image for project: ${project.title}`);
-              resolve(); // Still resolve to avoid blocking
-            };
+            img.onerror = () => resolve();
           });
         });
         
@@ -136,21 +133,19 @@ export default function Projects(): JSX.Element {
       } catch (error) {
         console.error("Error preloading images:", error);
       } finally {
-        setIsLoading(false); // Always set loading to false, even if some images fail
+        setIsLoading(false);
       }
     };
     
     preloadImages();
     
-    // Set fallback rendering in case animations don't trigger
     const fallbackTimer = setTimeout(() => {
       setRenderFallback(true);
-    }, 5000);
+    }, 2000);
     
     return () => clearTimeout(fallbackTimer);
   }, []);
 
-  // 3D card hover effect with GSAP
   useEffect(() => {
     if (isLoading) return;
     
@@ -173,15 +168,6 @@ export default function Projects(): JSX.Element {
         transformPerspective: 1000,
         transformStyle: "preserve-3d"
       });
-      
-      // Add subtle shadow movement
-      const cardContent = card.querySelector<HTMLElement>('.card-content');
-      if (cardContent) {
-        gsap.to(cardContent, {
-          boxShadow: `${-xPercent}px ${-yPercent}px 20px rgba(0, 0, 0, 0.2)`,
-          duration: 0.4
-        });
-      }
     };
     
     const resetCardPosition = (e: MouseEvent): void => {
@@ -192,68 +178,53 @@ export default function Projects(): JSX.Element {
         duration: 0.7,
         ease: "elastic.out(1, 0.7)"
       });
-      
-      const cardContent = card.querySelector<HTMLElement>('.card-content');
-      if (cardContent) {
-        gsap.to(cardContent, {
-          boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)',
-          duration: 0.7
-        });
-      }
     };
 
     cards.forEach(card => {
-      card.addEventListener('mousemove', handleCardHover as EventListener);
-      card.addEventListener('mouseleave', resetCardPosition as EventListener);
+      card.addEventListener('mousemove', handleCardHover);
+      card.addEventListener('mouseleave', resetCardPosition);
     });
 
     return () => {
       cards.forEach(card => {
-        card.removeEventListener('mousemove', handleCardHover as EventListener);
-        card.removeEventListener('mouseleave', resetCardPosition as EventListener);
+        card.removeEventListener('mousemove', handleCardHover);
+        card.removeEventListener('mouseleave', resetCardPosition);
       });
     };
   }, [isLoading]);
 
-  // Optimized zipper animation with staggered reveal
   useEffect(() => {
     if (isLoading || !containerRef.current) return;
     
-    // Make sure to refresh ScrollTrigger when component mounts
     ScrollTrigger.refresh();
     
     const ctx = gsap.context(() => {
       const cards = gsap.utils.toArray<HTMLElement>('.project-card');
-      // Use a single timeline with staggered animations for better performance
+      
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top center", // Changed to trigger earlier
-          end: "center center",
-          toggleActions: "play none none none",
+          start: "top bottom-=100",
+          end: "center center+=100",
+          toggleActions: "play none reverse none",
           scrub: 0.5,
-          onEnter: () => {
-            cards.forEach(card => card.style.visibility = 'visible');
-          },
-          onEnterBack: () => {
-            cards.forEach(card => card.style.visibility = 'visible');
-          }
+          id: "projects-animation",
+          onEnter: () => cards.forEach(card => card.style.visibility = 'visible'),
+          onEnterBack: () => cards.forEach(card => card.style.visibility = 'visible')
         }
       });
-      
-      // Group cards by column position
+
       const leftCards: HTMLElement[] = [];
       const middleCards: HTMLElement[] = [];
       const rightCards: HTMLElement[] = [];
       
       cards.forEach((card, index) => {
-        const colPosition = index % 3; // For 3 columns layout
+        const colPosition = index % 3;
         if (colPosition === 0) leftCards.push(card);
         else if (colPosition === 1) middleCards.push(card);
         else rightCards.push(card);
       });
       
-      // Add left column animations
       tl.from(leftCards, {
         x: -100,
         y: 50,
@@ -264,8 +235,7 @@ export default function Projects(): JSX.Element {
         ease: "power2.out",
         clearProps: "all"
       }, 0);
-      
-      // Add right column animations
+
       tl.from(rightCards, {
         x: 100,
         y: 50,
@@ -276,8 +246,7 @@ export default function Projects(): JSX.Element {
         ease: "power2.out",
         clearProps: "all"
       }, 0);
-      
-      // Add middle column animations with delay
+
       tl.from(middleCards, {
         y: 70,
         opacity: 0,
@@ -287,8 +256,7 @@ export default function Projects(): JSX.Element {
         ease: "power3.out",
         clearProps: "all"
       }, 0.2);
-      
-      // Parallax effect for the heading - more subtle
+
       gsap.to(".section-heading", {
         y: -20,
         ease: "none",
@@ -300,6 +268,7 @@ export default function Projects(): JSX.Element {
         }
       });
     }, containerRef);
+  
 
     // Add a fallback timer to ensure cards are visible even if GSAP fails
     const fallbackTimer = setTimeout(() => {

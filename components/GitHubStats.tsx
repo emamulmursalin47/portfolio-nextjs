@@ -19,7 +19,7 @@ export default function GitHubStats() {
     <div className=" shadow-lg rounded-lg p-6 mx-auto">
       <h2 className="text-2xl font-bold text-center mb-6">GitHub Statistics</h2>
       
-      {/* Main stats cards */}
+   
       
       
       {/* Streak stats */}

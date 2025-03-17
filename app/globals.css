@@ -173,3 +173,21 @@
     opacity: 1;
   }
 }
+.project-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.card-content {
+  transition: box-shadow 0.3s ease-out;
+  backface-visibility: hidden;
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #4F46E5, #EC4899);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
