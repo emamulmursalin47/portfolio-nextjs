@@ -8,16 +8,19 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, Download, Mail } from 'lucide-react';
 import React from 'react';
-import ParticlesBackground from './ParticlesBackground';
+import Container from './Container';
+
 
 const HeroSection: React.FC = () => {
   return (
-    <div className="relative overflow-hidden min-h-screen flex items-center">
+    <div>
+ <Container>
+  <div className="relative overflow-hidden min-h-screen flex items-center">
       {/* Background Glow */}
      
-      <ParticlesBackground/>
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* <ParticlesBackground/> */}
+      <div className=" mx-auto px-4 relative z-10">
+        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Section */}
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -35,7 +38,7 @@ const HeroSection: React.FC = () => {
             </motion.h1>
 
             <motion.div className="text-xl text-blue-200 mb-8">
-              System Architecture Specialist | Web Developer | AI Innovator
+              Solution Architecture Specialist | Web Developer | AI Innovator
             </motion.div>
 
             <motion.p className="text-gray-300 mb-8 text-lg">
@@ -73,9 +76,9 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 1, delay: 0.5 }}
             className="relative h-[500px] hidden lg:block"
           >
-            <div className="absolute w-[300px] h-[600px] bg-blue-500 blur-[150px]  opacity-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"></div>
+            <div className="absolute w-[500px] h-[600px] bg-blue-500 blur-[150px]  opacity-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-0"></div>
             {/* Profile Image */}
-            <div className="relative w-[500px] ml-40 h-full">
+            <div className="relative w-[600px] ml-40 h-[600px]">
               <Image
                 src="https://res.cloudinary.com/dufs2ywc7/image/upload/v1742190919/Blue_Simple_Business_Professional_LinkedIn_Profile_Picture_2_xsxngn.png"
                 alt="Profile"
@@ -88,6 +91,10 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
     </div>
+    </Container>
+    </div>
+   
+  
   );
 };
 

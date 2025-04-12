@@ -18,6 +18,8 @@ import { DiJava } from 'react-icons/di';
 import Image from 'next/image';
 import { AiOutlineClose } from 'react-icons/ai';
 import GitHubStats from '@/components/GitHubStats';
+import { ContainerIcon } from 'lucide-react';
+import Container from '@/components/Container';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -274,8 +276,8 @@ const Skills = () => {
  
   
   return (
-    
-    <div className="container mx-auto px-4 py-16 md:py-24" id="skills">
+    <Container>
+       <div className=" mx-auto px-4 " id="skills">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -285,44 +287,8 @@ const Skills = () => {
         <p className="text-gray-300 text-center mb-8 md:mb-12 max-w-3xl mx-auto text-sm md:text-base">
           Leveraging modern technologies and frameworks to build efficient, scalable, and beautiful applications
         </p>
-
-        <div className="flex justify-center mb-8 md:mb-12 px-2">
-          <div className="flex flex-wrap md:flex-nowrap w-full md:w-auto justify-center space-y-2 md:space-y-0 md:space-x-2 bg-black/50 backdrop-blur-md p-1 rounded-lg">
-            {/* <button
-              onClick={() => setActiveTab('skills')}
-              className={`w-full md:w-auto px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
-                activeTab === 'skills' 
-                  ? 'bg-blue-600 text-white' 
-                  : 'text-gray-400 hover:text-gray-200'
-              }`}
-            >
-              <FaCode className="mr-2" /> Skills
-            </button> */}
-            {/* <button
-              onClick={() => setActiveTab('certifications')}
-              className={`w-full md:w-auto px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
-                activeTab === 'certifications' 
-                  ? 'bg-blue-600 text-white' 
-                  : 'text-gray-400 hover:text-gray-200'
-              }`}
-            >
-              <FaAward className="mr-2" /> Certifications
-            </button> */}
-            {/* <button
-              onClick={() => setActiveTab('github')}
-              className={`w-full md:w-auto px-4 md:px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center ${
-                activeTab === 'github' 
-                  ? 'bg-blue-600 text-white' 
-                  : 'text-gray-400 hover:text-gray-200'
-              }`}
-            >
-              <SiGithub className="mr-2" /> GitHub Stats
-            </button> */}
-          </div>
-        </div>
-
         {activeTab === 'skills' && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8">
             {skillCategories.map((category, categoryIndex) => (
               <motion.div
                 key={categoryIndex}
@@ -371,6 +337,8 @@ const Skills = () => {
         
       </motion.div>
     </div>
+    </Container>
+   
   );
 };
 

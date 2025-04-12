@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, GraduationCap, Award, ChevronDown, MousePointer, ExternalLink, Download, Calendar, Building } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Container from '@/components/Container';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -322,9 +323,10 @@ const Experience = () => {
     : experiences.filter(exp => exp.category === filterCategory);
 
   return (
-    <div 
+    <Container>
+      <div 
       ref={sectionRef} 
-      className="container mx-auto px-4 py-32 relative" 
+      className="mx-auto px-4 py-32 relative" 
       id="experience"
     >
       <motion.div
@@ -380,15 +382,7 @@ const Experience = () => {
         
         {/* Scroll indicator with improved visibility */}
          {/* Scroll indicator in top right corner */}
-      <div 
-        ref={scrollIndicatorRef}
-        className="fixed top-10 right-6 flex items-center gap-2 bg-blue-800/70 backdrop-blur-sm py-2 px-4 rounded-full shadow-lg z-50"
-      >
-        <p className="text-blue-100 font-medium text-sm">
-          Scroll to explore
-        </p>
-        <ChevronDown className="text-blue-300 animate-bounce h-4 w-4" />
-      </div>
+      {/*  */}
       </motion.div>
 
       {/* Scroll Guide Popup */}
@@ -496,7 +490,7 @@ const Experience = () => {
         {/* Timeline container with improved visuals */}
         <div 
           ref={timelineRef}
-          className="absolute left-0 md:left-1/2 h-full w-px bg-blue-500/20 transform -translate-x-1/2" 
+          className="absolute left-0 md:left-1/2 h-full  bg-blue-500/20 transform -translate-x-1/2" 
         />
         
         {/* Progress line that animates when scrolling - improved with glow effect */}
@@ -650,12 +644,14 @@ const Experience = () => {
                     ))}
                   </ul>
                 </div>
+                
               </motion.div>
             ))}
           </div>
         </div>
       </div>
     </div>
+    </Container>
   );
 };
 

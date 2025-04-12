@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Linkedin, Github } from 'lucide-react';
+import Container from '@/components/Container';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-32" id="contact">
+   <Container>
+     <div className="mx-auto px-4 " id="contact">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -171,6 +173,7 @@ const Contact = () => {
         
       </motion.div>
     </div>
+   </Container>
   );
 };
 

@@ -2,10 +2,12 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal,  Key } from 'react';
+import Container from './Container';
 //@ts-ignore
 export default function ProjectCard({ project, index, onClick }) {
   return (
-    <motion.div
+ 
+     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -49,5 +51,6 @@ export default function ProjectCard({ project, index, onClick }) {
         </button>
       </div>
     </motion.div>
+  
   );
 }

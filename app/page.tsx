@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 import { useEffect, useRef, type JSX } from "react";
-// import Scene from "@/components/3d/Scene";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroSection from "@/components/hero-section";
@@ -9,6 +9,7 @@ import Projects from "./projects/page";
 import Skills from "./skills/page";
 import Experience from "./education/page";
 import Contact from "./contact/page";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +19,6 @@ export default function Home(): JSX.Element {
   useEffect(() => {
     // Ensure containerRef.current exists before creating a GSAP context
     if (!containerRef.current) return;
-    
     const ctx = gsap.context(() => {
       gsap.from(".hero-content", {
         opacity: 0,
@@ -45,8 +45,9 @@ export default function Home(): JSX.Element {
 
   return (
     <div ref={containerRef} className="min-h-screen">
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen pt-8">
+ 
+{/* Hero Section */}
+<section id="home" className="min-h-screen pt-8">
         <HeroSection />
       </section>
       
@@ -67,6 +68,8 @@ export default function Home(): JSX.Element {
       <section id="contact" className="min-h-screen py-8">
         <Contact />
       </section>
+   
+      
     </div>
   );
 }

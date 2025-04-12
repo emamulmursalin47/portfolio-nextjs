@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import Container from '@/components/Container';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -359,8 +360,9 @@ export default function Projects(): JSX.Element {
 
   try {
     return (
-      <div ref={containerRef} className="min-h-screen py-20 overflow-hidden bg-gradient-to-b from-background to-background/70" id="projects">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Container>
+ <div ref={containerRef} className="min-h-screen  overflow-hidden bg-gradient-to-b from-background to-background/70" id="projects">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -375,7 +377,7 @@ export default function Projects(): JSX.Element {
             </p>
           </motion.div>
 
-          <div className="project-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="project-grid grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-8">
             {projects.map((project, index) => (
               <div 
                 key={project.id} 
@@ -582,11 +584,14 @@ export default function Projects(): JSX.Element {
           )}
         </AnimatePresence>
       </div>
+      </Container>
+     
     );
   } catch (error) {
     console.error("Error rendering Projects component:", error);
     return (
-      <div className="min-h-screen flex items-center justify-center" id="projects">
+      <Container>
+<div className="min-h-screen flex items-center justify-center" id="projects">
         <div className="text-center">
           <h2 className="text-2xl font-bold">Featured Projects</h2>
           <p className="text-muted-foreground">Something went wrong. Please refresh the page.</p>
@@ -598,6 +603,8 @@ export default function Projects(): JSX.Element {
           </button>
         </div>
       </div>
+      </Container>
+      
     );
   }
 }
